@@ -1,0 +1,11 @@
+name: SpawnerDrops
+author: Andrewboy159
+version: 1.2
+main: me.andrewboy159.spawnerdrops.SpawnerDrops
+depend: [SilkSpawners]
+description: Killing an entity gives a chance for it to drop a spawner
+commands:
+  spawnerdrops:
+    usage: /<command>
+    description: Main command for SpawnerDrops
+    aliases: [sds]
