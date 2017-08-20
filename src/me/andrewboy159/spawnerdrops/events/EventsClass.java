@@ -1,6 +1,7 @@
 package me.andrewboy159.spawnerdrops.events;
 
 import me.andrewboy159.spawnerdrops.SpawnerDrops;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -8,7 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.plugin.Plugin;
 
-import net.md_5.bungee.api.ChatColor;
+import java.util.Random;
 
 public class EventsClass implements Listener {
 	private Plugin plugin = SpawnerDrops.getPlugin(SpawnerDrops.class);
@@ -16,10 +17,11 @@ public class EventsClass implements Listener {
 	@EventHandler
 	public void onEntityDeath(EntityDeathEvent event) {
 
-		int number = (int) Math.ceil(Math.random() * plugin.getConfig().getInt("percentage"));
+		Random random = new Random();
 		if (!event.getEntityType().toString().equalsIgnoreCase("player")
 				&& event.getEntity().getKiller().getType().toString().equalsIgnoreCase("player")) {
-			if (number == 1) {
+			float number = random.nextFloat();
+			if (number <= plugin.getConfig().getInt("percentage") / 100) {
 				Player player = event.getEntity().getKiller();
 				try {
 					if (player.hasPermission("spawnerdrops.collect")) {
